@@ -45,6 +45,7 @@ class Buku extends BaseController
 
     public function tambah ()
     {
+        session();
         $data = [
             'judul' => "Form Tambah Buku"
         ];
@@ -56,11 +57,23 @@ class Buku extends BaseController
     {
         // $this->request->getVar();
 
+        // Validasi data
+
+        if (!$this->validate([
+            'judul' => 'required|is_unique[buku.judul]'
+        ])) {
+            session()->setFlashdata('pesan', 'Data sudah ada atau isi kurang komplit');
+
+            return redirect()->to('/buku/tambah');
+        }
+
+
+        $slug = url_title($this->request->getVar('judul'), '-', true);
         $this->bukuModel->save(
             [
                 'judul' => $this->request->getVar('judul'),
                 'nama_pengarang' => $this->request->getVar('nama_pengarang'),
-                'slug' => $this->request->getVar('slug')
+                'slug' => $slug
             ]
             );
 

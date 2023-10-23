@@ -56,5 +56,6 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
 
         // $this->bukuModel = new \App\Models\BukuModel();
+        session();
     }
 }
