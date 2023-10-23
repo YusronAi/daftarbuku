@@ -8,6 +8,7 @@ class BukuModel extends Model
 {
     protected $table = 'buku';
     protected $useTimestamps      = true;
+    protected $allowedFields = ['judul', 'pengarang', 'slug'];
 
     public function getBuku ($slug = false)
     {

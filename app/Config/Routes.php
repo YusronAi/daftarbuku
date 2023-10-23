@@ -11,4 +11,6 @@ $routes->get('/', 'Pages::index');
 $routes->get('/pages/about', 'Pages::about');
 $routes->get('/pages/contact', 'Pages::contact');
 $routes->get('/buku', 'buku::index');
+$routes->get('/buku/tambah', 'buku::tambah');
+$routes->post('/buku/simpan', 'buku::simpan');
 $routes->get('/buku/(:segment)', 'buku::detail/$1');

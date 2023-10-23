@@ -1,6 +1,7 @@
 <?= $this->extend('layouts/template'); ?>
 
 <?= $this->section('content'); ?>
+<a href="/buku/tambah" class="btn btn-primary mb-3">Tambah Buku</a>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -8,6 +9,12 @@
         </div>
     </div>
 </div>
+
+<?php if (session()->getFlashdata('pesan')) : ?>
+<div class="alert alert-success" role="alert">
+  <?= session()->getFlashdata('pesan'); ?>
+</div>
+<?php endif; ?>
 
 <table class="table">
     <thead>
