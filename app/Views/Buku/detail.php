@@ -20,8 +20,14 @@
                     <div class="mt-5">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div><br>
+                        <form action="/buku/<?= $buku['id']; ?>" method="post" class="d-inline">
+                                <?= csrf_field(); ?>
+                            <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah kamu yakin ingin menghapus?'); ">Delete</button></form>
+                        <div class="mt-3"> <span class="text1"><a href="/buku">
+                                    << Kembali</a></span>
                         </div>
-                        <div class="mt-3"> <span class="text1"><a href="/buku"><< Kembali</a></span> </div>
                     </div>
                 </div>
             </div>

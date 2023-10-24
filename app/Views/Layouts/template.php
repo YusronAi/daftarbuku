@@ -13,7 +13,6 @@
   </head>
   <body>
 
-
 <?= $this->include('layouts/navbar'); ?>
 <?= $this->renderSection('content'); ?>
 <!-- Optional JavaScript; choose one of the two! -->

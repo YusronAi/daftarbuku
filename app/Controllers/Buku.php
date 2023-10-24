@@ -45,7 +45,6 @@ class Buku extends BaseController
 
     public function tambah ()
     {
-        session();
         $data = [
             'judul' => "Form Tambah Buku"
         ];
@@ -78,6 +77,50 @@ class Buku extends BaseController
             );
 
             session()->setFlashdata('pesan', 'Data berhasil ditambahkan');
+
+            return redirect()->to('/buku');
+    }
+
+    public function hapus ($id)
+    {
+        $this->bukuModel->delete($id);
+
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+        return redirect()->to('/buku');
+    }
+
+    public function ubah ($slug)
+    {
+        $data = [
+            'judul' => 'Form Ubah Data Buku',
+            'buku' => $this->bukuModel->getBuku($slug)
+        ];
+
+        return view('buku\ubah', $data);
+    }
+
+    public function update ($id) 
+    {
+        // if (!$this->validate([
+        //     'judul' => 'required|is_unique[buku.judul]'
+        // ])) {
+        //     session()->setFlashdata('pesan', 'Judul sudah ada atau isi kurang komplit');
+
+        //     return redirect()->to('/buku/ubah/'. $this->request->getVar('slug'));
+        // }
+
+
+        $slug = url_title($this->request->getVar('judul'), '-', true);
+        $this->bukuModel->save(
+            [
+                'id' => $id,
+                'judul' => $this->request->getVar('judul'),
+                'nama_pengarang' => $this->request->getVar('nama_pengarang'),
+                'slug' => $slug
+            ]
+            );
+
+            session()->setFlashdata('pesan', 'Data berhasil diubah');
 
             return redirect()->to('/buku');
     }

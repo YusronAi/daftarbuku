@@ -32,7 +32,7 @@
                 <th scope="row"><?= $i; ?></th>
                 <td><?= $row['judul']; ?></td>
                 <td><?= $row['nama_pengarang']; ?></td>
-                <td><a href="/buku/<?= $row['slug']; ?>">Detail</a> <a href="">Edit</a> <a href="">Hapus</a></td>
+                <td><a href="/buku/<?= $row['slug']; ?>">Detail</a> <a href="/buku/ubah/<?= $row['slug']; ?>">Edit</a> <a href="/buku/hapus/<?= $row['id']; ?>">Hapus</a></td>
             </tr>
             <?php $i++ ?>
         <?php endforeach; ?>

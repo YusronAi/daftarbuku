@@ -12,18 +12,19 @@
                     <?= session()->getFlashdata('pesan'); ?>
                 </div>
             <?php endif; ?>
-            <form action="/buku/simpan" method="post">
+            <form action="/buku/update/<?= $buku['id']; ?>" method="post">
                 <!-- Menanganai csrf -->
                 <?= csrf_field(); ?>
+                <input type="hidden" name="slug" value="<?= $buku['slug']; ?>">
                 <!-- judul input -->
                 <div class="form-outline mb-4">
-                    <input type="teks" id="form1Example1" class="form-control" name="judul" autofocus />
+                    <input type="teks" id="form1Example1" class="form-control" name="judul" value="<?= $buku['judul']; ?>" autofocus />
                     <label class="form-label" for="form1Example1">Judul</label>
                 </div>
 
                 <!-- nama pengarang input -->
                 <div class="form-outline mb-4">
-                    <input type="teks" id="form1Example2" class="form-control" name="nama_pengarang" />
+                    <input type="teks" id="form1Example2" class="form-control" name="nama_pengarang" value="<?= $buku['nama_pengarang']; ?>" />
                     <label class="form-label" for="form1Example2">Nama Pengarang</label>
                 </div>
 
@@ -31,7 +32,7 @@
                 <div class="row mb-4">
                     <div class="col d-flex justify-content-center">
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-block">Tambah Buku</button>
+                        <button type="submit" class="btn btn-primary btn-block">Ubah Buku</button>
             </form>
         </div>
     </div>
