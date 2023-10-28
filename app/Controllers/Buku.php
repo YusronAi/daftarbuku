@@ -26,7 +26,7 @@ class Buku extends BaseController
         return view('buku\index', $data);
     }
 
-    public function detail ($slug)
+    public function detail($slug)
     {
         $data = [
             'judul' => "Detail",
@@ -35,15 +35,14 @@ class Buku extends BaseController
 
         // Jika buku tidak di tabel
 
-        if(empty($data['buku']))
-        {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Judul buku "'. $slug . '" tidak ditemukan.');
+        if (empty($data['buku'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Judul buku "' . $slug . '" tidak ditemukan.');
         }
 
         return view('buku\detail', $data);
     }
 
-    public function tambah ()
+    public function tambah()
     {
         $data = [
             'judul' => "Form Tambah Buku"
@@ -52,7 +51,7 @@ class Buku extends BaseController
         return view('buku\create', $data);
     }
 
-    public function simpan ()
+    public function simpan()
     {
         // $this->request->getVar();
 
@@ -66,30 +65,45 @@ class Buku extends BaseController
             return redirect()->to('/buku/tambah');
         }
 
+        // Ambil gambar
+
+        $fileGambar = $this->request->getFile('gambar');
+        // Pindah file gambar
+        $fileGambar->move('img');
+
+        // Ambil nama gambar
+        $namaGambar = $fileGambar->getName();
+        // $namaGambar = $fileGambar->getRandomName();
 
         $slug = url_title($this->request->getVar('judul'), '-', true);
         $this->bukuModel->save(
             [
                 'judul' => $this->request->getVar('judul'),
                 'nama_pengarang' => $this->request->getVar('nama_pengarang'),
-                'slug' => $slug
+                'slug' => $slug,
+                'gambar' => $namaGambar
             ]
-            );
+        );
 
-            session()->setFlashdata('pesan', 'Data berhasil ditambahkan');
+        session()->setFlashdata('pesan', 'Data berhasil ditambahkan');
 
-            return redirect()->to('/buku');
+        return redirect()->to('/buku');
     }
 
-    public function hapus ($id)
+    public function hapus($id)
     {
+        // Cari id gamabar
+        $buku = $this->bukuModel->first($id);
+        // Hapus gambar
+        unlink('img/' . $buku['gambar']);
+
         $this->bukuModel->delete($id);
 
         session()->setFlashdata('pesan', 'Data berhasil dihapus');
         return redirect()->to('/buku');
     }
 
-    public function ubah ($slug)
+    public function ubah($slug)
     {
         $data = [
             'judul' => 'Form Ubah Data Buku',
@@ -99,7 +113,7 @@ class Buku extends BaseController
         return view('buku\ubah', $data);
     }
 
-    public function update ($id) 
+    public function update($id)
     {
         // if (!$this->validate([
         //     'judul' => 'required|is_unique[buku.judul]'
@@ -109,6 +123,24 @@ class Buku extends BaseController
         //     return redirect()->to('/buku/ubah/'. $this->request->getVar('slug'));
         // }
 
+        // Ambil gambar
+        $fileGambar = $this->request->getFile('gambar');
+
+        // Cek gambar apakah gamabar baru atau lama
+        if ($fileGambar->getError() == 4) {
+            $namaGambar = $this->request->getVar('gambarLama');
+        } else {
+            
+        // Ambil nama gambar
+        $namaGambar = $fileGambar->getName();
+        // $namaGambar = $fileGambar->getRandomName();
+
+        // Pindah file gambar
+        $fileGambar->move('img');
+
+        // Hapus gambar lama
+        unlink('img/'. $this->request->getVar('gambarLama'));
+        }
 
         $slug = url_title($this->request->getVar('judul'), '-', true);
         $this->bukuModel->save(
@@ -116,12 +148,13 @@ class Buku extends BaseController
                 'id' => $id,
                 'judul' => $this->request->getVar('judul'),
                 'nama_pengarang' => $this->request->getVar('nama_pengarang'),
-                'slug' => $slug
+                'slug' => $slug,
+                'gambar' => $namaGambar
             ]
-            );
+        );
 
-            session()->setFlashdata('pesan', 'Data berhasil diubah');
+        session()->setFlashdata('pesan', 'Data berhasil diubah');
 
-            return redirect()->to('/buku');
+        return redirect()->to('/buku');
     }
 }

@@ -17,6 +17,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/buku">Daftar Buku</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/anggota">Daftar Anggota</a>
+      </li>
     </ul>
   </div>
 </nav>

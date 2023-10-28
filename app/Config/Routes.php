@@ -18,3 +18,5 @@ $routes->get('/buku/ubah/(:segment)', 'buku::ubah/$1');
 $routes->get('/buku/hapus/(:num)', 'buku::hapus/$1');
 $routes->delete('/buku/(:num)', 'buku::hapus/$1');
 $routes->get('/buku/(:any)', 'buku::detail/$1');
+$routes->get('/anggota', 'anggota::index');
+$routes->post('/anggota', 'anggota::index');

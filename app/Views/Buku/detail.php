@@ -17,6 +17,9 @@
                 </div>
                 <div class="mt-5">
                     <h3 class="heading"><?= $buku['judul']; ?></h3>
+                    <div class="col-md-4">
+                        <img class="img-thumbnail" src="\img\<?= $buku['gambar']; ?>" alt="">
+                    </div>
                     <div class="mt-5">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>

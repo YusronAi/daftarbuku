@@ -11,15 +11,17 @@
 </div>
 
 <?php if (session()->getFlashdata('pesan')) : ?>
-<div class="alert alert-success" role="alert">
-  <?= session()->getFlashdata('pesan'); ?>
-</div>
+    <div class="alert alert-success" role="alert">
+        <?= session()->getFlashdata('pesan'); ?>
+    </div>
 <?php endif; ?>
+
 
 <table class="table">
     <thead>
         <tr>
             <th scope="col">No</th>
+            <th scope="col">Gambar</th>
             <th scope="col">Judul</th>
             <th scope="col">Nama Pengarang</th>
             <th scope="col">Aksi</th>
@@ -30,9 +32,14 @@
         <?php foreach ($buku as $row) : ?>
             <tr>
                 <th scope="row"><?= $i; ?></th>
-                <td><?= $row['judul']; ?></td>
+                <td style="width: 15%; height: 15%">
+                    <div>
+                        <img class="img-thumbnail" src="\img\<?= $row['gambar']; ?>" alt="">
+                    </div>
+                </td>
+                <td><div><?= $row['judul']; ?></td>
                 <td><?= $row['nama_pengarang']; ?></td>
-                <td><a href="/buku/<?= $row['slug']; ?>">Detail</a> <a href="/buku/ubah/<?= $row['slug']; ?>">Edit</a> <a href="/buku/hapus/<?= $row['id']; ?>">Hapus</a></td>
+                <td><a class="btn btn-success" href="/buku/<?= $row['slug']; ?>">Detail</a> <a class="btn btn-success" href="/buku/ubah/<?= $row['slug']; ?>">Edit</a> <a class="btn btn-danger" href="/buku/hapus/<?= $row['id']; ?>">Hapus</a></td>
             </tr>
             <?php $i++ ?>
         <?php endforeach; ?>
