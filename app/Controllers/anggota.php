@@ -42,6 +42,14 @@ class anggota extends BaseController
 
     public function login()
     {
+        $data = [
+            'judul' => 'Login'
+        ];
+
+        return view('anggota\login', $data);
+    }
+
+    public function auth () {
         $nama = $this->request->getVar('name');
         $password = $this->request->getVar('password');
 
@@ -54,17 +62,13 @@ class anggota extends BaseController
                     return redirect()->to('/');
                 } else {
                     session()->setFlashdata('pesan', 'Password salah');
+                    return redirect()->to('/anggota/login');
                 }
             } else {
                 session()->setFlashdata('pesan', 'Akun tidak ditemukan');
+                return redirect()->to('/anggota/login');
             }
         }
-
-        $data = [
-            'judul' => 'Login'
-        ];
-
-        return view('anggota\login', $data);
     }
 
     public function logout()

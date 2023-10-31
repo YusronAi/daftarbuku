@@ -9,9 +9,9 @@ class Pages extends BaseController
         $set = session();
         $sett = $set->get('login');
 
-        if (empty($sett)) {
-            return redirect()->to('/anggota/login');
-        }
+        // if (empty($sett)) {
+        //     return redirect()->to('/anggota/login');
+        // }
 
         $data = [
             'judul' => 'Home',

@@ -12,7 +12,7 @@
 <body>
     <div class="wrapper">
         <div class="form-wrapper sign-in">
-            <form action="" method="post">
+            <form action="/anggota/auth" method="post">
                 <h2>Login</h2>
                 <div class="input-group">
                     <input type="text" name="name" required>
