@@ -20,3 +20,7 @@ $routes->delete('/buku/(:num)', 'buku::hapus/$1');
 $routes->get('/buku/(:any)', 'buku::detail/$1');
 $routes->get('/anggota', 'anggota::index');
 $routes->post('/anggota', 'anggota::index');
+$routes->get('/anggota/login', 'anggota::login');
+$routes->post('/anggota/login', 'anggota::login');
+$routes->get('/logout', 'anggota::logout');
+$routes->post('/anggota/register', 'anggota::register');

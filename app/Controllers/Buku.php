@@ -39,6 +39,8 @@ class Buku extends BaseController
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Judul buku "' . $slug . '" tidak ditemukan.');
         }
 
+        d($data);
+
         return view('buku\detail', $data);
     }
 

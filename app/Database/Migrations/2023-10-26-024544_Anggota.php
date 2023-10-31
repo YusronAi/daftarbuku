@@ -13,15 +13,19 @@ class Anggota extends Migration
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
-                'auto_increment' => true,
+                'auto_increment' => true
             ],
             'nama' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255',
+                'constraint' => '255'
             ],
             'alamat' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255',
+                'constraint' => '255'
+            ],
+            'password' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255'
             ],
             'created_at' => [
                 'type' => 'DATETIME',

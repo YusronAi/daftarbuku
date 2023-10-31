@@ -6,13 +6,22 @@ class Pages extends BaseController
 {
     public function index()
     {
+        $set = session();
+        $sett = $set->get('login');
+
+        if (empty($sett)) {
+            return redirect()->to('/anggota/login');
+        }
+
         $data = [
-            'judul' => 'Home'
+            'judul' => 'Home',
+            'session' => $sett
         ];
+
         return view('pages\home', $data);
     }
 
-    public function about ()
+    public function about()
     {
         $data = [
             'judul' => "About"
@@ -20,7 +29,7 @@ class Pages extends BaseController
         return view('pages/about', $data);
     }
 
-    public function contact ()
+    public function contact()
     {
         $data = [
             'judul' => "Contact"

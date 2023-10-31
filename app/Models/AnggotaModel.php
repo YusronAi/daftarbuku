@@ -8,7 +8,7 @@ class AnggotaModel extends Model
 {
     protected $table = 'anggota';
     protected $useTimestamps      = true;
-    protected $allowedFields = ['nama', 'alamat'];
+    protected $allowedFields = ['nama', 'alamat', 'password'];
 
     // Pakai query builder
     public function search ($keyword)
@@ -18,5 +18,10 @@ class AnggotaModel extends Model
         // return $builder;
 
         return $this->table('anggota')->like('nama', $keyword)->orLike('alamat', $keyword);
+    }
+
+    public function cari ($id)
+    {
+        return $this->table('anggota')->like('id', $id);
     }
 }
