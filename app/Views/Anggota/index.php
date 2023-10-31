@@ -1,14 +1,6 @@
 <?= $this->extend('layouts/template'); ?>
 
 <?= $this->section('content'); ?>
-<a href="/buku/tambah" class="btn btn-primary mb-3">Tambah Buku</a>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h1><?= $judul; ?></h1>
-        </div>
-    </div>
-</div>
 
 <div class="input-group">
     <form action="" method="post">

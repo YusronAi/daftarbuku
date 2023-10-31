@@ -20,6 +20,10 @@
       <li class="nav-item">
         <a class="nav-link" href="/anggota">Daftar Anggota</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+        <a class="nav-link" href="#"><p><?= session()->get('login')['nama']; ?></p></a>
+      </li>
     </ul>
   </div>
 </nav>
